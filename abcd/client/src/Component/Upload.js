@@ -8,6 +8,7 @@ function Upload(props) {
     tempArr.push(Content);
     props.setContentList([...tempArr]);
     setContent("");
+    console.log(tempArr);
   };
 
   useEffect(() => {}, []);
