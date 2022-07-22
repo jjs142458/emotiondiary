@@ -8,6 +8,8 @@ const port = 5000;
 //mjchoi12
 
 app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   mongoose
@@ -17,13 +19,20 @@ app.listen(port, () => {
     .then(() => {
       console.log("connecting MongoDB...");
     })
-    .catch();
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
-//a
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
+app.post("/api/test", (req, res) => {
+  console.log(req.body);
+  res.status(200).json({ success: true, text: "안_녕!" });
 });
