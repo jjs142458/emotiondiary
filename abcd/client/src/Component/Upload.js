@@ -4,8 +4,8 @@ function Upload(props) {
   const [Content, setContent] = useState("");
 
   const onSubmit = () => {
-    let tempArr = [...props.ContentList];
-    tempArr.push(Content);
+    let tempArr = [...props.ContentList, Content];
+
     props.setContentList([...tempArr]);
     setContent("");
   };
