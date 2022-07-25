@@ -9,6 +9,8 @@ import List from "./Component/List";
 function App() {
   const [ContentList, setContentList] = useState([]);
 
+  console.log(ContentList);
+
   return (
     <>
       <BrowserRouter>

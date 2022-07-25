@@ -25,10 +25,13 @@ function List(props) {
     <div>
       <h3>List!</h3>
       <h3>{Text}</h3>
-      {props.ContentList.map((content, idx) => {
+      {props.ContentList.map((dataList, idx) => {
         return (
           <div key={idx} style={{ width: "100%", marginLeft: "1rem" }}>
-            내용 : {content}
+            <p />
+            제목 : {dataList.title}
+            <p />
+            내용 : {dataList.content}
             <hr />
           </div>
         );

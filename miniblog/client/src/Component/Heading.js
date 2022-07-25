@@ -10,26 +10,14 @@ function Heading() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                home
-              </Link>
+            <Nav.Link as={Link} to="/">
+              home
             </Nav.Link>
-            <Nav.Link>
-              <Link
-                to="/upload"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                upload
-              </Link>
+            <Nav.Link as={Link} to="upload">
+              upload
             </Nav.Link>
-            <Nav.Link>
-              <Link
-                to="/list"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                list
-              </Link>
+            <Nav.Link as={Link} to="list">
+              list
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
