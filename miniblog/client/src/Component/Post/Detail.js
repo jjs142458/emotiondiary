@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 function Detail() {
   let params = useParams();
   const [PostInfo, setPostInfo] = useState({});
-  const [Flog, setFlog] = useState(false);
+  const [Flag, setFlag] = useState(false);
 
   useEffect(() => {
     let body = {
@@ -16,7 +16,7 @@ function Detail() {
       .then((res) => {
         if (res.data.success) {
           setPostInfo(res.data.post);
-          setFlog(true);
+          setFlag(true);
         }
       })
       .catch((err) => {
@@ -30,7 +30,7 @@ function Detail() {
 
   return (
     <div>
-      {Flog ? (
+      {Flag ? (
         <div>
           <p>제목 {PostInfo.title}</p>
           <p>내용 {PostInfo.content}</p>
