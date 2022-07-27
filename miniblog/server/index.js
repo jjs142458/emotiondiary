@@ -12,10 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const { Post } = require("./Model/Post.js");
+const { Counter } = require("./Model/Counter.js");
+
 app.listen(port, () => {
   mongoose
     .connect(
-      `mongodb+srv://sosorry:mjchoi12@cluster0.9raso.mongodb.net/Community?retryWrites=true&w=majority`
+      `mongodb+srv://sosorry:mjchoi12@cluster0.9raso.mongodb.net/SSSCommunity?retryWrites=true&w=majority`
     )
     .then(() => {
       console.log("connecting MongoDB...");
@@ -34,10 +36,18 @@ app.get("*", (req, res) => {
 });
 
 app.post("/api/post/submit", (req, res) => {
-  const CommunityPost = new Post(req.body);
-  CommunityPost.save()
-    .then(() => {
-      res.status(200).json({ success: true });
+  Counter.findOne({ name: "counter" })
+    .exec()
+    .then((counter) => {
+      req.body.postNum = counter.postNum;
+      const CommunityPost = new Post(req.body);
+      CommunityPost.save().then(() => {
+        Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
+          () => {
+            res.status(200).json({ success: true });
+          }
+        );
+      });
     })
     .catch((err) => {
       res.status(400).json({ success: false });

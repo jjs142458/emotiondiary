@@ -23,7 +23,6 @@ function Upload(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (dataList.title.length > 0 && dataList.content.length > 0) {
-      props.setContentList([...props.ContentList, dataList]);
       setDataList({
         title: "",
         content: "",

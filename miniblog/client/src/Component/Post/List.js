@@ -7,6 +7,7 @@ function List() {
 
   useEffect(() => {
     axios.post("/api/post/list").then((res) => {
+      console.log(res);
       if (res.data.success) {
         setPostList([...res.data.postList]);
       }
