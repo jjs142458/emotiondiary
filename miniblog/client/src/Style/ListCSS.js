@@ -18,9 +18,14 @@ const ListItem = styled.div`
   margin-top: 5vh;
   margin-bottom: 5vh;
   padding: 20px;
-  box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.03);
-  .title {
-    font-weight: bold;
+  box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.03),
+    0px 15px 12px rgba(0, 0, 0, 0.1);
+  a {
+    color: black;
+    text-decoration: none;
+    .title {
+      font-weight: bold;
+    }
   }
 `;
 
