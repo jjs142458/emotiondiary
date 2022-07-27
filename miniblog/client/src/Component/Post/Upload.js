@@ -3,16 +3,14 @@ import {
   UploadDiv,
   UploadForm,
   UpoadButtonDiv,
-  UploadFormDiv,
-} from "../Style/UploadCSS.js";
+} from "../../Style/UploadCSS.js";
+import axios from "axios";
 
 function Upload(props) {
   const [dataList, setDataList] = useState({
     title: "",
     content: "",
   });
-
-  console.log(dataList);
 
   const onChange = (e) => {
     const { id, value } = e.target;
@@ -22,13 +20,29 @@ function Upload(props) {
     });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     if (dataList.title.length > 0 && dataList.content.length > 0) {
       props.setContentList([...props.ContentList, dataList]);
       setDataList({
         title: "",
         content: "",
       });
+
+      let body = dataList;
+
+      axios
+        .post("/api/post/submit", body)
+        .then((res) => {
+          if (res.data.success) {
+            alert("글 작성이 성공하였습니다.");
+          } else {
+            alert("글 작성에 실패하였습니다.");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       alert("1글자 이상 입력해주세요.");
     }
@@ -45,8 +59,8 @@ function Upload(props) {
   };
 
   return (
-    <UploadDiv onKeyPress={handleOnKeyPress}>
-      <UploadFormDiv>
+    <UploadDiv>
+      <UploadForm>
         <label htmlFor="title">제목</label>
         <input
           id="title"
@@ -62,11 +76,11 @@ function Upload(props) {
           onChange={onChange}
         />
         <UpoadButtonDiv>
-          <button onClick={onSubmit} style={{ marginTop: "1rem" }}>
+          <button onClick={(e) => onSubmit(e)} style={{ marginTop: "1rem" }}>
             제출
           </button>
         </UpoadButtonDiv>
-      </UploadFormDiv>
+      </UploadForm>
     </UploadDiv>
   );
 }

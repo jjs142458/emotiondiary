@@ -33,12 +33,24 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
-app.post("/api/test", (req, res) => {
-  const CommunityPost = new Post({
-    title: "제목은 몰라요",
-    content: String(12312),
-  });
-  CommunityPost.save().then(() => {
-    res.status(200).json({ success: true, text: "안녕하세요" });
-  });
+app.post("/api/post/submit", (req, res) => {
+  const CommunityPost = new Post(req.body);
+  CommunityPost.save()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
+app.post("/api/post/list", (req, res) => {
+  Post.find()
+    .exec()
+    .then((doc) => {
+      res.status(200).json({ success: true, postList: doc });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
 });
