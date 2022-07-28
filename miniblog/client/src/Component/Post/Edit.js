@@ -12,6 +12,7 @@ function Edit() {
   const [PostInfo, setPostInfo] = useState({});
 
   let navigate = useNavigate();
+
   useEffect(() => {
     let body = {
       postNum: params.postNum,
@@ -43,7 +44,7 @@ function Edit() {
     }
 
     let body = PostInfo;
-    console.log(body);
+
     axios
       .put("/api/post/edit", body)
       .then((res) => {
@@ -66,14 +67,14 @@ function Edit() {
         <input
           id="title"
           type="text"
-          value={PostInfo.title || "제목을 불러오는 중 입니다."}
+          value={PostInfo.title}
           onChange={onChange}
         />
         <label htmlFor="content">내용</label>
         <textarea
           id="content"
           type="text"
-          value={PostInfo.content || "내용을 불러오는 중 입니다."}
+          value={PostInfo.content}
           onChange={onChange}
         />
         <UpoadButtonDiv>
