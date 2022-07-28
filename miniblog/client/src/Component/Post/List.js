@@ -16,7 +16,7 @@ function List() {
 
   return (
     <ListDiv>
-      {PostList.map((post) => {
+      {PostList.map((post, idx) => {
         return (
           <ListItem>
             <p>제목 : {post.title}</p>
