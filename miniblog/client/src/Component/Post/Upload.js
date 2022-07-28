@@ -51,7 +51,7 @@ function Upload(props) {
   };
 
   return (
-    <UploadDiv onKeyPress={handleOnKeyPress}>
+    <UploadDiv>
       <UploadForm>
         <label htmlFor="title">제목</label>
         <input

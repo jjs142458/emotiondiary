@@ -68,11 +68,22 @@ app.post("/api/post/list", (req, res) => {
 });
 
 app.post("/api/post/detail", (req, res) => {
-  Post.findOne({ postNum: parseInt(req.body.postNum) })
+  Post.findOne({ postNum: Number(req.body.postNum) })
     .exec()
     .then((doc) => {
-      console.log(doc);
       res.status(200).json({ success: true, post: doc });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
+app.put("/api/post/edit", (req, res) => {
+  let data = req.body;
+  Post.updateOne({ postNum: data.postNum }, { $set: data })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
     })
     .catch((err) => {
       res.status(400).json({ success: false });
