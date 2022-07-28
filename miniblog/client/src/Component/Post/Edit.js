@@ -10,10 +10,8 @@ import {
 function Edit() {
   let params = useParams();
   const [PostInfo, setPostInfo] = useState({});
-  const [Flag, setFlag] = useState(false);
 
   let navigate = useNavigate();
-
   useEffect(() => {
     let body = {
       postNum: params.postNum,
@@ -23,7 +21,6 @@ function Edit() {
       .then((res) => {
         if (res.data.success) {
           setPostInfo(res.data.post);
-          setFlag(true);
         }
       })
       .catch((err) => {
@@ -46,7 +43,7 @@ function Edit() {
     }
 
     let body = PostInfo;
-
+    console.log(body);
     axios
       .put("/api/post/edit", body)
       .then((res) => {
@@ -61,7 +58,7 @@ function Edit() {
         console.log(err);
       });
   };
-  console.log(PostInfo);
+
   return (
     <UploadDiv>
       <UploadForm>
@@ -69,14 +66,14 @@ function Edit() {
         <input
           id="title"
           type="text"
-          value={PostInfo.title}
+          value={PostInfo.title || "제목을 불러오는 중 입니다."}
           onChange={onChange}
         />
         <label htmlFor="content">내용</label>
         <textarea
           id="content"
           type="text"
-          value={PostInfo.content}
+          value={PostInfo.content || "내용을 불러오는 중 입니다."}
           onChange={onChange}
         />
         <UpoadButtonDiv>

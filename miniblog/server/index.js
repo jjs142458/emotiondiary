@@ -79,8 +79,20 @@ app.post("/api/post/detail", (req, res) => {
 });
 
 app.put("/api/post/edit", (req, res) => {
-  let data = req.body;
-  Post.updateOne({ postNum: data.postNum }, { $set: data })
+  const data = req.body;
+  Post.updateOne({ postNum: Number(data.postNum) }, { $set: data })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
+app.delete("/api/post/delete", (req, res) => {
+  const data = req.params;
+  Post.deleteOne({ data })
     .exec()
     .then(() => {
       res.status(200).json({ success: true });

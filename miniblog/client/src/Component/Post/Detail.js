@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { BtnDiv, Post, PostDiv } from "../../Style/DetailCSS";
 
 function Detail() {
   let params = useParams();
   const [PostInfo, setPostInfo] = useState({});
   const [Flag, setFlag] = useState(false);
+  const [Delete, setDelete] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     let body = {
@@ -26,23 +28,41 @@ function Detail() {
   }, []);
 
   useEffect(() => {
-    console.log(PostInfo);
-  }, [PostInfo]);
+    if (Delete) {
+      axios
+        .delete("/api/post/delete", params)
+        .then((res) => {
+          if (res.data.success) {
+            navigate("/", { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
 
   return (
     <div>
       {Flag ? (
         <PostDiv>
           <Post>
-            <h1>제목 {PostInfo.title}</h1>
+            <h1>{PostInfo.title}</h1>
             <hr />
-            <p>내용 {PostInfo.content}</p>
+            <p>{PostInfo.content}</p>
           </Post>
           <BtnDiv>
             <Link to={`/edit/${PostInfo.postNum}`}>
               <button className="edit">수정</button>
             </Link>
-            <button className="delete">삭제</button>
+            <button
+              className="delete"
+              onClick={() => {
+                setDelete(true);
+              }}
+            >
+              삭제
+            </button>
           </BtnDiv>
         </PostDiv>
       ) : null}
