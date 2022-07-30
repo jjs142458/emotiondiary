@@ -30,7 +30,9 @@ function Detail() {
   useEffect(() => {
     if (Delete) {
       axios
-        .post("/api/post/delete", { postNum: params.postNum })
+        .delete("/api/post/delete", {
+          data: { postNum: params.postNum },
+        })
         .then((res) => {
           if (res.data.success) {
             navigate("/", { replace: true });

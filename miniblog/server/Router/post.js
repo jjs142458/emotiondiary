@@ -3,38 +3,38 @@ const router = express.Router();
 const { Post } = require("../Model/Post.js");
 const { Counter } = require("../Model/Counter.js");
 
-router
-  .post("/submit", (req, res) => {
-    let temp = req.body;
-    Counter.findOne({ name: "counter" })
-      .exec()
-      .then((counter) => {
-        temp.postNum = counter.postNum;
-        console.log(temp);
-        const CommunityPost = new Post(temp);
-        CommunityPost.save().then(() => {
-          Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
-            () => {
-              res.status(200).json({ success: true });
-            }
-          );
-        });
-      })
-      .catch((err) => {
-        res.status(400).json({ success: false });
+router.post("/submit", (req, res) => {
+  let temp = req.body;
+  Counter.findOne({ name: "counter" })
+    .exec()
+    .then((counter) => {
+      temp.postNum = counter.postNum;
+      console.log(temp);
+      const CommunityPost = new Post(temp);
+      CommunityPost.save().then(() => {
+        Counter.updateOne({ name: "counter" }, { $inc: { postNum: 1 } }).then(
+          () => {
+            res.status(200).json({ success: true });
+          }
+        );
       });
-  })
-  .put("/edit", (req, res) => {
-    const data = req.body;
-    Post.updateOne({ postNum: Number(data.postNum) }, { $set: data })
-      .exec()
-      .then(() => {
-        res.status(200).json({ success: true });
-      })
-      .catch((err) => {
-        res.status(400).json({ success: false });
-      });
-  });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
+
+router.put("/edit", (req, res) => {
+  const data = req.body;
+  Post.updateOne({ postNum: Number(data.postNum) }, { $set: data })
+    .exec()
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      res.status(400).json({ success: false });
+    });
+});
 
 router.post("/list", (req, res) => {
   Post.find()
@@ -58,8 +58,7 @@ router.post("/detail", (req, res) => {
     });
 });
 
-router.post("/delete", (req, res) => {
-  console.log(req.body);
+router.delete("/delete", (req, res) => {
   Post.deleteOne({ postNum: Number(req.body.postNum) })
     .exec()
     .then(() => {
