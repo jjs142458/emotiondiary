@@ -12,7 +12,6 @@ function Upload(props) {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const [Image, setImage] = useState("");
-  console.log(Image);
   let navigate = useNavigate();
 
   const onSubmit = (e) => {
@@ -28,7 +27,7 @@ function Upload(props) {
       content: Content,
       image: Image,
     };
-
+    console.log(body);
     axios
       .post("/api/post/submit", body)
       .then((res) => {

@@ -4,6 +4,8 @@ const router = express.Router();
 const { Post } = require("../Model/Post.js");
 const { Counter } = require("../Model/Counter.js");
 
+const setUpload = require("../Util/Upload.js");
+
 router.post("/submit", (req, res) => {
   let temp = req.body;
   Counter.findOne({ name: "counter" })
@@ -70,6 +72,8 @@ router.delete("/delete", (req, res) => {
     });
 });
 
+/*
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "image/");
@@ -91,5 +95,16 @@ router.post("/image/upload", (req, res) => {
     }
   });
 });
+
+*/
+
+router.post(
+  "/image/upload",
+  setUpload("blog-community/post"),
+  (req, res, next) => {
+    console.log(res.req.file);
+    res.status(200).json({ success: true, filePath: res.req.file.location });
+  }
+);
 
 module.exports = router;
