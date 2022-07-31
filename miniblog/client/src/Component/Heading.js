@@ -16,8 +16,8 @@ function Heading() {
             <Nav.Link as={Link} to="/upload">
               upload
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
-              list
+            <Nav.Link as={Link} to="/login">
+              login
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

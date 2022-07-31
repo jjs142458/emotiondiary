@@ -79,7 +79,7 @@ function Edit() {
           id="title"
           type="text"
           value={PostInfo.title}
-          onChange={onChange}
+          onChange={(e) => onChange(e)}
         />
         <div>
           <Form.Control
@@ -94,7 +94,7 @@ function Edit() {
           id="content"
           type="text"
           value={PostInfo.content}
-          onChange={onChange}
+          onChange={(e) => onChange(e)}
         />
         <UpoadButtonDiv>
           <button
