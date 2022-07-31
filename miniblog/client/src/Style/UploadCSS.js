@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const UploadDiv = styled.div`
   width: 100%;
   margin-top: 1rem;
-  miargin-botton: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const UploadForm = styled.form`
@@ -11,10 +11,11 @@ const UploadForm = styled.form`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  input {
+  #title {
     border-radius: 10px;
     border: 1px solid #c6c6c6;
     padding: 10px;
+    margin-bottom: 10px;
     &:active,
     &:focus {
       outline: none;

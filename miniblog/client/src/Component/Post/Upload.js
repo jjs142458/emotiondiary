@@ -6,10 +6,13 @@ import {
   UpoadButtonDiv,
 } from "../../Style/UploadCSS.js";
 import axios from "axios";
+import ImageUpload from "./ImageUpload.js";
 
 function Upload(props) {
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
+  const [Image, setImage] = useState("");
+  console.log(Image);
   let navigate = useNavigate();
 
   const onSubmit = (e) => {
@@ -23,6 +26,7 @@ function Upload(props) {
     let body = {
       title: Title,
       content: Content,
+      image: Image,
     };
 
     axios
@@ -60,6 +64,7 @@ function Upload(props) {
           value={Title}
           onChange={(e) => setTitle(e.currentTarget.value)}
         />
+        <ImageUpload setImage={setImage} />
         <label htmlFor="content">내용</label>
         <textarea
           id="content"

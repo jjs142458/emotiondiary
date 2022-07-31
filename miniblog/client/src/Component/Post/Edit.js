@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
 import {
   UploadDiv,
   UploadForm,
@@ -10,7 +11,6 @@ import {
 function Edit() {
   let params = useParams();
   const [PostInfo, setPostInfo] = useState({});
-
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +60,17 @@ function Edit() {
       });
   };
 
+  const FileUpload = (e) => {
+    var formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    axios.post("/api/post/image/upload", formData).then((res) => {
+      setPostInfo((prevState) => {
+        return { ...prevState, image: res.data.filePath };
+      });
+      console.log(PostInfo);
+    });
+  };
+
   return (
     <UploadDiv>
       <UploadForm>
@@ -70,6 +81,14 @@ function Edit() {
           value={PostInfo.title}
           onChange={onChange}
         />
+        <div>
+          <Form.Control
+            type="file"
+            className="shadow-none"
+            accept="image/*"
+            onChange={(e) => FileUpload(e)}
+          />
+        </div>
         <label htmlFor="content">내용</label>
         <textarea
           id="content"
