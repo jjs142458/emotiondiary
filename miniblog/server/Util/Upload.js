@@ -5,15 +5,14 @@ const path = require("path");
 
 const endpoint = new AWS.Endpoint("https://kr.object.ncloudstorage.com");
 const region = "kr-standard";
-const access_key = "gU9VGNv35GsjaRvB8pX8";
-const secret_key = "duMzuAB4UQjccjNcPqURA8Ov0ohBVnuCrwy4x3e1";
+const config = require("../Config/key.js");
 
 const S3 = new AWS.S3({
   endpoint: endpoint,
   region: region,
   credentials: {
-    accessKeyId: access_key,
-    secretAccessKey: secret_key,
+    accessKeyId: config.access_key,
+    secretAccessKey: config.secret_key,
   },
 });
 

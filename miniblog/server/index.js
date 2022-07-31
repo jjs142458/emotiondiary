@@ -4,8 +4,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 const port = 5000;
-
-//mjchoi12
+const config = require("./Config/key.js");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use("/image", express.static("./image"));
@@ -16,9 +15,7 @@ app.use("/api/post", require("./Router/post.js"));
 
 app.listen(port, () => {
   mongoose
-    .connect(
-      `mongodb+srv://sosorry:mjchoi12@cluster0.9raso.mongodb.net/Community?retryWrites=true&w=majority`
-    )
+    .connect(config.mongoURI)
     .then(() => {
       console.log("connecting MongoDB...");
     })
