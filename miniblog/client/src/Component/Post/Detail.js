@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { BtnDiv, Post, PostDiv } from "../../Style/DetailCSS";
 
@@ -9,6 +10,7 @@ function Detail() {
   const [Flag, setFlag] = useState(false);
   const [Delete, setDelete] = useState(false);
   let navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     let body = {
@@ -50,6 +52,7 @@ function Detail() {
         <PostDiv>
           <Post>
             <h1>{PostInfo.title}</h1>
+            <p>작성자 : {PostInfo.author.displayName}</p>
             <hr />
             {PostInfo.image ? (
               <>
@@ -63,19 +66,21 @@ function Detail() {
             ) : null}
             <p>{PostInfo.content}</p>
           </Post>
-          <BtnDiv>
-            <Link to={`/edit/${PostInfo.postNum}`}>
-              <button className="edit">수정</button>
-            </Link>
-            <button
-              className="delete"
-              onClick={() => {
-                setDelete(true);
-              }}
-            >
-              삭제
-            </button>
-          </BtnDiv>
+          {user.uid == PostInfo.author.uid && (
+            <BtnDiv>
+              <Link to={`/edit/${PostInfo.postNum}`}>
+                <button className="edit">수정</button>
+              </Link>
+              <button
+                className="delete"
+                onClick={() => {
+                  setDelete(true);
+                }}
+              >
+                삭제
+              </button>
+            </BtnDiv>
+          )}
         </PostDiv>
       ) : null}
     </div>

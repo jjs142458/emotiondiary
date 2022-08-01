@@ -17,11 +17,13 @@ function List() {
   return (
     <ListDiv>
       {PostList.map((post, idx) => {
+        console.log(post);
         return (
           <ListItem key={idx}>
             <Link to={`/post/${post.postNum}`}>
               <p>제목 : {post.title}</p>
               <p>내용 : {post.content}</p>
+              <p>작성자 :{post.author.displayName}</p>
               <hr />
             </Link>
           </ListItem>
