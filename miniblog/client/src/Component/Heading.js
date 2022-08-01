@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import firebase from "../firebase.js";
 
 function Heading() {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  const LoginOutHandler = () => {
+    firebase.auth().signOut();
+    navigate("/", { replace: true });
+  };
+
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
@@ -16,10 +26,32 @@ function Heading() {
             <Nav.Link as={Link} to="/upload">
               upload
             </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse
+          className="justify-content-end"
+          style={{
+            color: "white",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          {user.accessToken === "" ? (
             <Nav.Link as={Link} to="/login">
               login
             </Nav.Link>
-          </Nav>
+          ) : (
+            <Navbar.Text
+              style={{
+                color: "white",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+              onClick={LoginOutHandler}
+            >
+              Logout
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
