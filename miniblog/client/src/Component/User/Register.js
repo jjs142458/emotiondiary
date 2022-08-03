@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginDiv from "../../Style/UesrCss";
 
+import { useSelector } from "react-redux";
 import firebase from "../../firebase.js";
 import axios from "axios";
 
@@ -12,9 +13,17 @@ function Register() {
     PW: "",
     PWC: "",
   });
+  const user = useSelector((state) => state.user);
   const [Flag, setFlag] = useState(false);
-
+  const [NameCheck, setNameCheck] = useState(false);
+  const [NameInfo, setNameInfo] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.accessToken) {
+      navigate("/", { replace: true });
+    }
+  }, []);
 
   const RegisterFunc = async (e) => {
     setFlag(true);
@@ -25,6 +34,10 @@ function Register() {
     if (LoginData.PW !== LoginData.PWC) {
       return alert("비밀번호와 비밀번호 확인 값은 같아야합니다.");
     }
+    if (!NameCheck) {
+      return alert("중복 검사를 진행해주세요.");
+    }
+
     let createdUser = await firebase
       .auth()
       .createUserWithEmailAndPassword(LoginData.Email, LoginData.PW);
@@ -38,7 +51,7 @@ function Register() {
       displayName: createdUser.user.multiFactor.user.displayName,
       uid: createdUser.user.multiFactor.user.uid,
     };
-    console.log(body);
+
     axios.post("/api/user/register", body).then((res) => {
       setFlag(false);
       if (res.data.success) {
@@ -58,16 +71,39 @@ function Register() {
     });
   };
 
+  const NameCheckFunc = (e) => {
+    e.preventDefault();
+    if (!LoginData.name) {
+      return alert("닉네임을 입력해주세요.");
+    }
+
+    let body = {
+      displayName: LoginData.name,
+    };
+    axios.post("/api/user/namecheck", body).then((res) => {
+      if (res.data.check) {
+        setNameCheck(true);
+        setNameInfo("사용가능한 닉네임입니다.");
+      } else {
+        setNameInfo(
+          <div style={{ color: "red" }}>사용불가능한 닉네임입니다.</div>
+        );
+      }
+    });
+  };
+
   return (
     <LoginDiv>
       <form>
-        <label>이름</label>
+        <label>닉네임</label>
         <input
           type="name"
           id="name"
           value={LoginData.name}
           onChange={onChange}
         />
+        {NameInfo}
+        <button onClick={(e) => NameCheckFunc(e)}>중복검사</button>
         <label>이메일</label>
         <input
           type="email"

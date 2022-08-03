@@ -4,7 +4,10 @@ import LoginDiv from "../../Style/UesrCss";
 
 import firebase from "../../firebase.js";
 
+import { useSelector } from "react-redux";
+
 function Login() {
+  const user = useSelector((state) => state.user);
   const [errMsg, setErrMsg] = useState("");
   const [UserData, setUserData] = useState({
     Email: "",
@@ -12,6 +15,13 @@ function Login() {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.accessToken) {
+      alert("잘못된 경로입니다.");
+      navigate("/", { replace: true });
+    }
+  }, []);
 
   const SignInFunc = async (e) => {
     e.preventDefault();

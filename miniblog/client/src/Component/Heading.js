@@ -21,14 +21,14 @@ function Heading() {
       style={{ borderBottom: "1px solid #ddd", paddingBottom: "11px" }}
     >
       <Container>
-        <Navbar.Brand href="/" style={{ fontSize: "24px" }}>
+        <Navbar.Brand href="/" style={{ fontSize: "24px", fontWeight: "bold" }}>
           I'm SoSorry's blog
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav
             className="me-auto"
-            style={{ fontSize: "17px", paddingTop: "11px" }}
+            style={{ fontSize: "20px", paddingTop: "11px" }}
           >
             <Nav.Link as={Link} to="/">
               home
@@ -44,21 +44,16 @@ function Heading() {
             color: "dark",
             textDecoration: "none",
             cursor: "pointer",
-            fontSize: "17px",
-            paddingTop: "11px",
+            fontSize: "20px",
+            paddingTop: "7px",
           }}
         >
           {user.accessToken === "" ? (
             <Nav.Link as={Link} to="/login">
-              login
+              Login
             </Nav.Link>
           ) : (
-            <Navbar.Text
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={LoginOutHandler}
-            >
+            <Navbar.Text onClick={LoginOutHandler} style={{ color: "black" }}>
               Logout
             </Navbar.Text>
           )}

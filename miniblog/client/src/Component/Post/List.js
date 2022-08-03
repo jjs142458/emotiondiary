@@ -20,10 +20,12 @@ function List() {
         return (
           <ListItem key={idx}>
             <Link to={`/post/${post.postNum}`}>
-              <p>제목 : {post.title}</p>
-              <p>내용 : {post.content}</p>
-              <p>작성자 :{post.author.displayName}</p>
+              <p style={{ fontWeight: "bold", fontSize: "20px" }}>
+                {post.title}
+              </p>
+              <p>{post.content}</p>
               <hr />
+              <p>작성자 :{post.author.displayName}</p>
             </Link>
           </ListItem>
         );

@@ -53,16 +53,6 @@ function Upload(props) {
       });
   };
 
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      if (!(Title === " " || Content === " ")) {
-        onSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
-      } else {
-        alert("1글자 이상입력해주세요.");
-      }
-    }
-  };
-
   return (
     <UploadDiv>
       <UploadForm>
