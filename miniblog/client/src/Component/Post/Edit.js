@@ -78,7 +78,7 @@ function Edit() {
         <input
           id="title"
           type="text"
-          value={PostInfo.title}
+          value={PostInfo.title ?? "잠시만 기다려주세요."}
           onChange={(e) => onChange(e)}
         />
         <div>
@@ -93,7 +93,7 @@ function Edit() {
         <textarea
           id="content"
           type="text"
-          value={PostInfo.content}
+          value={PostInfo.content ?? "잠시만 기다려주세요."}
           onChange={(e) => onChange(e)}
         />
         <UpoadButtonDiv>

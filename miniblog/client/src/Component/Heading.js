@@ -14,12 +14,22 @@ function Heading() {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar
+      bg="white"
+      expand="lg"
+      variant="white"
+      style={{ borderBottom: "1px solid #ddd", paddingBottom: "11px" }}
+    >
       <Container>
-        <Navbar.Brand href="/">I'm SoSorry's blog</Navbar.Brand>
+        <Navbar.Brand href="/" style={{ fontSize: "24px" }}>
+          I'm SoSorry's blog
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav
+            className="me-auto"
+            style={{ fontSize: "17px", paddingTop: "11px" }}
+          >
             <Nav.Link as={Link} to="/">
               home
             </Nav.Link>
@@ -31,9 +41,11 @@ function Heading() {
         <Navbar.Collapse
           className="justify-content-end"
           style={{
-            color: "white",
+            color: "dark",
             textDecoration: "none",
             cursor: "pointer",
+            fontSize: "17px",
+            paddingTop: "11px",
           }}
         >
           {user.accessToken === "" ? (
@@ -43,8 +55,6 @@ function Heading() {
           ) : (
             <Navbar.Text
               style={{
-                color: "white",
-                textDecoration: "none",
                 cursor: "pointer",
               }}
               onClick={LoginOutHandler}
