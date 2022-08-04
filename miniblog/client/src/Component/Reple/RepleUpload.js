@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { RepleListDiv } from "../../Style/RepleCSS";
 
 function RepleUpload(props) {
   const [Reple, setReple] = useState("");
@@ -29,7 +30,7 @@ function RepleUpload(props) {
     });
   };
   return (
-    <div>
+    <RepleListDiv>
       <form>
         <input
           type="text"
@@ -38,7 +39,7 @@ function RepleUpload(props) {
         />
         <button onClick={(e) => Submithandler(e)}>등록</button>
       </form>
-    </div>
+    </RepleListDiv>
   );
 }
 

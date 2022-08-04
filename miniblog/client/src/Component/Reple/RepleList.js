@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { RepleContentDiv, RepleListDiv } from "../../Style/RepleCSS";
 
 function RepleList(props) {
   const [RepleList, setRepleList] = useState([]);
@@ -12,12 +13,27 @@ function RepleList(props) {
       }
     });
   }, [RepleList]);
+
   return (
-    <div>
+    <RepleListDiv>
       {RepleList.map((reple, idx) => {
-        return <div key={idx}>{reple.reple}</div>;
+        return (
+          <RepleContentDiv key={idx}>
+            <div className="author">
+              <p>{reple.author.displayName}</p>
+              <div className="modalControl">
+                <span>...</span>
+                <div className="modalDiv">
+                  <p>수정</p>
+                  <p className="delete">삭제</p>
+                </div>
+              </div>
+            </div>
+            <p>{reple.reple}</p>
+          </RepleContentDiv>
+        );
       })}
-    </div>
+    </RepleListDiv>
   );
 }
 
