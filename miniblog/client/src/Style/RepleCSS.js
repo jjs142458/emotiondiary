@@ -14,6 +14,7 @@ const RepleListDiv = styled.div`
   form {
     width: 100%;
     display: grid;
+    margin-bottom: 10px;
 
     grid-template-columns: 7fr 1fr;
     grid-template-rows: 50px;
@@ -42,6 +43,25 @@ const RepleListDiv = styled.div`
       &:active {
         border: 0.5px solid darkgrey;
         background-color: darkgrey;
+      }
+    }
+  }
+
+  .cancel {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-top: 5px;
+      font-size: 12px;
+      border-radius: 10px;
+      padding: 5px;
+      background-color: red;
+      color: white;
+      border: 1px solid red;
+      &:hover {
+        background-color: white;
+        color: red;
+        border: 1px solid red;
       }
     }
   }
