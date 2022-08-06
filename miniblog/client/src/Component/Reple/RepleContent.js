@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { RepleContentDiv, RepleListDiv } from "../../Style/RepleCSS";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function RepleContent(props) {
+  const user = useSelector((state) => state.user);
   const ref = useRef();
   const [ModalFalg, setModalFlag] = useState(false);
   const [EditFalg, setEditFalg] = useState(false);
@@ -40,7 +42,7 @@ function RepleContent(props) {
         <p>{props.reple.author.displayName}</p>
         <div className="modalControl">
           <span onClick={() => setModalFlag(true)}>...</span>
-          {ModalFalg && (
+          {ModalFalg && props.reple.author.uid === user.uid && (
             <div className="modalDiv" ref={ref}>
               <p
                 onClick={() => {
