@@ -26,7 +26,6 @@ function Register() {
   }, []);
 
   const RegisterFunc = async (e) => {
-    setFlag(true);
     e.preventDefault();
     if (!(LoginData.name && LoginData.Email && LoginData.PW && LoginData.PWC)) {
       return alert("모든 값을 채워주세요");
@@ -37,7 +36,7 @@ function Register() {
     if (!NameCheck) {
       return alert("중복 검사를 진행해주세요.");
     }
-
+    setFlag(true);
     let createdUser = await firebase
       .auth()
       .createUserWithEmailAndPassword(LoginData.Email, LoginData.PW);
@@ -56,7 +55,8 @@ function Register() {
       setFlag(false);
       if (res.data.success) {
         alert("회원가입에 성공하셨습니다.");
-        navigate("/login");
+        alert("로그인 되었습니다.");
+        navigate("/");
       } else {
         alert("회원가입에 실패하였습니다.");
       }

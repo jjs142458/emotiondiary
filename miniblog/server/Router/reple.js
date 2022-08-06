@@ -58,7 +58,7 @@ router.put("/edit", (req, res) => {
 });
 
 router.delete("/delete", (req, res) => {
-  Reple.deleteOne({ postId: req.body.data })
+  Reple.deleteOne({ _id: req.body.data })
     .exec()
     .then(() => {
       return res.status(200).json({ success: true });

@@ -57,14 +57,14 @@ function Heading() {
           marginRight: "110px",
         }}
       >
-        {user.accessToken === "" ? (
-          <Nav.Link as={Link} to="/login">
-            Login
-          </Nav.Link>
-        ) : (
+        {user.accessToken ? (
           <Navbar.Text onClick={LoginOutHandler} style={{ color: "black" }}>
             Logout
           </Navbar.Text>
+        ) : (
+          <Nav.Link as={Link} to="/login">
+            Login
+          </Nav.Link>
         )}
       </Navbar.Collapse>
     </Navbar>

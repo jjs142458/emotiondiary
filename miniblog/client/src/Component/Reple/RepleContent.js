@@ -27,11 +27,12 @@ function RepleContent(props) {
   const Deletehandler = (e) => {
     e.preventDefault();
 
-    let data = props.reple.postId;
+    let data = props.reple._id;
 
     axios.delete("/api/reple/delete", { data: { data } }).then((res) => {
       if (res.data.success) {
         setEditFalg(false);
+        setModalFlag(false);
       }
     });
   };

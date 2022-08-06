@@ -5,12 +5,14 @@ import { RepleListDiv } from "../../Style/RepleCSS";
 
 function RepleUpload(props) {
   const [Reple, setReple] = useState("");
+  const [Posting, setPosting] = useState(false);
   const user = useSelector((state) => state.user);
 
   const Submithandler = (e) => {
     e.preventDefault();
-
+    setPosting(true);
     if (!Reple) {
+      setPosting(false);
       return alert("댓글 내용을 입력해주세요.");
     }
 
@@ -24,6 +26,7 @@ function RepleUpload(props) {
         setReple("");
         alert("댓글 작성이 완료되었습니다.");
         //window.location.reload();
+        setPosting(false);
       } else {
         alert("댓글 작성에 실패하였습니다.");
       }
@@ -35,9 +38,12 @@ function RepleUpload(props) {
         <input
           type="text"
           value={Reple}
+          disabled={Posting}
           onChange={(e) => setReple(e.target.value)}
         />
-        <button onClick={(e) => Submithandler(e)}>등록</button>
+        <button onClick={(e) => Submithandler(e)} disabled={Posting}>
+          등록
+        </button>
       </form>
     </RepleListDiv>
   );
