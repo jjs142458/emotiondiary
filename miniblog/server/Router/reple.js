@@ -45,4 +45,16 @@ router.post("/getreple", (req, res) => {
     });
 });
 
+router.put("/edit", (req, res) => {
+  Reple.updateOne({ postId: req.body.postId }, { $set: req.body })
+    .exec()
+    .then(() => {
+      return res.status(200).json({ success: true });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(400).json({ success: false });
+    });
+});
+
 module.exports = router;

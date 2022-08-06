@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { RepleContentDiv, RepleListDiv } from "../../Style/RepleCSS";
+import axios from "axios";
 
 function RepleContent(props) {
   const ref = useRef();
@@ -8,7 +9,18 @@ function RepleContent(props) {
   const [Reple, setReple] = useState("");
   useOnClickOutside(ref, () => setModalFlag(false));
 
-  const Submithandler = () => {};
+  const Submithandler = (e) => {
+    e.preventDefault();
+
+    let data = props.reple;
+    data.reple = Reple;
+
+    axios.put("/api/reple/edit", data).then((res) => {
+      if (res.data.success) {
+        setEditFalg(false);
+      }
+    });
+  };
 
   return (
     <RepleContentDiv>
