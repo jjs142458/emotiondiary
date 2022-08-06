@@ -22,6 +22,18 @@ function RepleContent(props) {
     });
   };
 
+  const Deletehandler = (e) => {
+    e.preventDefault();
+
+    let data = props.reple.postId;
+
+    axios.delete("/api/reple/delete", { data: { data } }).then((res) => {
+      if (res.data.success) {
+        setEditFalg(false);
+      }
+    });
+  };
+
   return (
     <RepleContentDiv>
       <div className="author">
@@ -38,7 +50,9 @@ function RepleContent(props) {
               >
                 수정
               </p>
-              <p className="delete">삭제</p>
+              <p className="delete" onClick={(e) => Deletehandler(e)}>
+                삭제
+              </p>
             </div>
           )}
         </div>
