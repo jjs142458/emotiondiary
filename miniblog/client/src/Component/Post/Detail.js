@@ -35,12 +35,17 @@ function Detail(props) {
           <h1>{props.PostInfo.title}</h1>
           <p>작성자 : {props.PostInfo.author.displayName}</p>
           <hr />
-          <img
-            src={props.PostInfo.image}
-            alt=""
-            style={{ maxWidth: "100%", maxHeight: "auto" }}
-          />
-          <hr />
+          {props.PostInfo.image && (
+            <>
+              <img
+                src={props.PostInfo.image}
+                alt=""
+                style={{ maxWidth: "100%", maxHeight: "auto" }}
+              />
+              <hr />
+            </>
+          )}
+
           <p>{props.PostInfo.content}</p>
         </Post>
         {user.uid == props.PostInfo.author.uid && (

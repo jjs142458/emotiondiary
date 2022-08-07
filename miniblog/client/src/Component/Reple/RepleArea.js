@@ -6,10 +6,23 @@ import { RepleAreaDiv } from "../../Style/RepleCSS";
 
 function RepleArea(props) {
   const user = useSelector((state) => state.user);
+
   return (
     <RepleAreaDiv>
-      {user.accessToken && <RepleUpload postId={props.postId} />}
-      <RepleList postId={props.postId} />
+      {user.accessToken ? (
+        <>
+          <RepleUpload postId={props.postId} />
+          <RepleList postId={props.postId} />
+        </>
+      ) : (
+        <>
+          <RepleList
+            postId={props.postId}
+            style={{ marginTop: "100px" }}
+            classname={"abcde"}
+          />
+        </>
+      )}
     </RepleAreaDiv>
   );
 }

@@ -12,7 +12,6 @@ router.post("/submit", (req, res) => {
   User.findOne({ uid: req.body.uid })
     .exec()
     .then((userInfo) => {
-      console.log(userInfo);
       temp.author = userInfo._id;
       const NewReple = new Reple(temp);
       NewReple.save(() => {

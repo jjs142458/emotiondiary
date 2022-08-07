@@ -16,11 +16,16 @@ function RepleList(props) {
   }, [RepleList]);
 
   return (
-    <RepleListDiv>
-      {RepleList.map((reple, idx) => {
-        return <RepleContent reple={reple} key={idx} />;
-      })}
-    </RepleListDiv>
+    <>
+      <hr />
+      {`작성된 댓글 수 : ${RepleList.length}`}
+      <p />
+      <RepleListDiv>
+        {RepleList.map((reple, idx) => {
+          return <RepleContent reple={reple} key={idx} />;
+        })}
+      </RepleListDiv>
+    </>
   );
 }
 
