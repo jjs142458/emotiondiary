@@ -48,7 +48,7 @@ function Detail(props) {
 
           <p>{props.PostInfo.content}</p>
         </Post>
-        {user.uid == props.PostInfo.author.uid && (
+        {user.uid === props.PostInfo.author.uid && (
           <BtnDiv>
             <Link to={`/edit/${props.PostInfo.postNum}`}>
               <button className="edit">수정</button>

@@ -60,7 +60,14 @@ router.delete("/delete", (req, res) => {
   Reple.deleteOne({ _id: req.body.data })
     .exec()
     .then(() => {
-      return res.status(200).json({ success: true });
+      Post.findOneAndUpdate(
+        { _id: req.body.postId },
+        { $inc: { repleNum: -1 } }
+      )
+        .exec()
+        .then(() => {
+          return res.status(200).json({ success: true });
+        });
     })
     .catch((err) => {
       console.log(err);
