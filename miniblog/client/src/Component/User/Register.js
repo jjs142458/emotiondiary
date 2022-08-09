@@ -43,12 +43,16 @@ function Register() {
 
     await createdUser.user.updateProfile({
       displayName: LoginData.name,
+      photoURL:
+        "https://kr.object.ncloudstorage.com/blog-community/user/profile.gif",
     });
 
     let body = {
       email: createdUser.user.multiFactor.user.email,
       displayName: createdUser.user.multiFactor.user.displayName,
       uid: createdUser.user.multiFactor.user.uid,
+      photoURL:
+        "https://kr.object.ncloudstorage.com/blog-community/user/profile.gif",
     };
 
     axios.post("/api/user/register", body).then((res) => {

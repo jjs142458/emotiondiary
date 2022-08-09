@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { RepleContentDiv, RepleListDiv } from "../../Style/RepleCSS";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Avatar from "react-avatar";
 
 function RepleContent(props) {
   const user = useSelector((state) => state.user);
@@ -40,7 +41,10 @@ function RepleContent(props) {
   return (
     <RepleContentDiv>
       <div className="author">
-        <p>{props.reple.author.displayName}</p>
+        <p>
+          {props.reple.author.displayName}
+          <Avatar size="30" round={true} src={props.reple.author.photoURL} />
+        </p>
         <div className="modalControl">
           <span onClick={() => setModalFlag(true)}>...</span>
           {ModalFalg && props.reple.author.uid === user.uid && (

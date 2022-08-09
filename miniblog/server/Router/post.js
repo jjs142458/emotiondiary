@@ -115,7 +115,6 @@ router.post(
   "/image/upload",
   setUpload("blog-community/post"),
   (req, res, next) => {
-    console.log(res.req.file);
     res.status(200).json({ success: true, filePath: res.req.file.location });
   }
 );

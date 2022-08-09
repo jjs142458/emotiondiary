@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { BtnDiv, Post, PostDiv } from "../../Style/DetailCSS";
+import Avatar from "react-avatar";
 
 function Detail(props) {
   let params = useParams();
-
+  console.log(props.PostInfo.author.photoURL);
   const [Delete, setDelete] = useState(false);
   let navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -33,7 +34,14 @@ function Detail(props) {
       <PostDiv>
         <Post>
           <h1>{props.PostInfo.title}</h1>
-          <p>작성자 : {props.PostInfo.author.displayName}</p>
+          <p>
+            작성자 : {props.PostInfo.author.displayName}
+            <Avatar
+              size="40"
+              round={true}
+              src={props.PostInfo.author.photoURL}
+            />
+          </p>
           <hr />
           {props.PostInfo.image && (
             <>
