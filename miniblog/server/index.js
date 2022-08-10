@@ -7,7 +7,6 @@ const port = 5000;
 const config = require("./Config/key.js");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
-app.use("/image", express.static("./image"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

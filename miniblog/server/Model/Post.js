@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema(
     },
     repleNum: { type: Number, default: 0 },
   },
-  { collection: "posts" }
+  { collection: "posts", timestamps: true }
 );
 
 const Post = mongoose.model("Post", postSchema);

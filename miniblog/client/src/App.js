@@ -6,7 +6,7 @@ import firebase from "./firebase.js";
 import "./App.css";
 import Heading from "./Component/Heading";
 import Upload from "./Component/Post/Upload";
-import List from "./Component/Post/List";
+import MainPage from "./Component/MainPage.js";
 import PostArea from "./Component/Post/PostArea.js";
 import Edit from "./Component/Post/Edit";
 
@@ -35,7 +35,7 @@ function App() {
       <BrowserRouter>
         <Heading />
         <Routes>
-          <Route path="/" element={<List />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/post/:postNum" element={<PostArea />} />
           <Route path="/edit/:postNum" element={<Edit />} />

@@ -1,23 +1,23 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ListDiv, ListItem } from "../../Style/ListCSS";
 import Avatar from "react-avatar";
 
-function List() {
-  const [PostList, setPostList] = useState([]);
+import moment from "moment";
+import "moment/locale/ko";
 
-  useEffect(() => {
-    axios.post("/api/post/list").then((res) => {
-      if (res.data.success) {
-        setPostList([...res.data.postList]);
-      }
-    });
-  }, []);
+function List(props) {
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do , hh:mm ") + "(수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do , hh:mm ");
+    }
+  };
 
   return (
     <ListDiv>
-      {PostList.map((post, idx) => {
+      {props.PostList.map((post, idx) => {
         return (
           <ListItem key={idx}>
             <Link to={`/post/${post.postNum}`}>
@@ -25,9 +25,9 @@ function List() {
                 {post.title}
               </p>
               <p>{post.content}</p>
-              <hr />
               <Avatar size="40" round={true} src={post.author.photoURL} />
               <p>작성자 : {post.author.displayName}</p>
+              <p>{SetTime(post.createdAt, post.updatedAt)}</p>
             </Link>
           </ListItem>
         );
