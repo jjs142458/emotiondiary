@@ -58,9 +58,17 @@ function Heading() {
         }}
       >
         {user.accessToken ? (
-          <Navbar.Text onClick={LoginOutHandler} style={{ color: "black" }}>
-            Logout
-          </Navbar.Text>
+          <>
+            <Navbar.Text onClick={LoginOutHandler} style={{ color: "black" }}>
+              Logout
+            </Navbar.Text>
+            <Navbar.Text
+              onClick={() => navigate("/MyPage")}
+              style={{ color: "black", marginLeft: "20px" }}
+            >
+              MyPage
+            </Navbar.Text>
+          </>
         ) : (
           <Nav.Link as={Link} to="/login">
             Login

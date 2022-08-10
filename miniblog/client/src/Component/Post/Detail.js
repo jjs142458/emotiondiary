@@ -34,14 +34,8 @@ function Detail(props) {
       <PostDiv>
         <Post>
           <h1>{props.PostInfo.title}</h1>
-          <p>
-            작성자 : {props.PostInfo.author.displayName}
-            <Avatar
-              size="40"
-              round={true}
-              src={props.PostInfo.author.photoURL}
-            />
-          </p>
+          <Avatar size="40" round={true} src={props.PostInfo.author.photoURL} />
+          <p>작성자 : {props.PostInfo.author.displayName}</p>
           <hr />
           {props.PostInfo.image && (
             <>

@@ -41,10 +41,8 @@ function RepleContent(props) {
   return (
     <RepleContentDiv>
       <div className="author">
-        <p>
-          {props.reple.author.displayName}
-          <Avatar size="30" round={true} src={props.reple.author.photoURL} />
-        </p>
+        <p>{props.reple.author.displayName}</p>
+        <Avatar size="30" round={true} src={props.reple.author.photoURL} />
         <div className="modalControl">
           <span onClick={() => setModalFlag(true)}>...</span>
           {ModalFalg && props.reple.author.uid === user.uid && (

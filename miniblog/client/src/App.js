@@ -12,6 +12,7 @@ import Edit from "./Component/Post/Edit";
 
 import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
+import MyPage from "./Component/User/MyPage";
 
 import { useDispatch } from "react-redux";
 import { loginUser, clearUser } from "./Reducer/userSlice";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/edit/:postNum" element={<Edit />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -26,10 +26,8 @@ function List() {
               </p>
               <p>{post.content}</p>
               <hr />
-              <p>
-                작성자 : {post.author.displayName}
-                <Avatar size="40" round={true} src={post.author.photoURL} />
-              </p>
+              <Avatar size="40" round={true} src={post.author.photoURL} />
+              <p>작성자 : {post.author.displayName}</p>
             </Link>
           </ListItem>
         );
