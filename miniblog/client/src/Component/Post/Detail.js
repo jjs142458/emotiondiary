@@ -7,7 +7,6 @@ import Avatar from "react-avatar";
 
 function Detail(props) {
   let params = useParams();
-  console.log(props.PostInfo.author.photoURL);
   const [Delete, setDelete] = useState(false);
   let navigate = useNavigate();
   const user = useSelector((state) => state.user);
