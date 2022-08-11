@@ -50,8 +50,16 @@ router.put("/edit", (req, res) => {
 });
 
 router.post("/list", (req, res) => {
+  let sort = {};
+
+  if (req.body.sort === "최신순") {
+    sort.createdAt = -1;
+  } else {
+    sort.repleNum = -1;
+  }
   Post.find()
     .populate("author")
+    .sort()
     .exec()
     .then((doc) => {
       res.status(200).json({ success: true, postList: doc });
