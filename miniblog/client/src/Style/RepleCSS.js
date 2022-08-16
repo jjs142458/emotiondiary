@@ -4,21 +4,20 @@ const RepleAreaDiv = styled.div`
   padding-bottom: 1rem;
   max-width: 756px;
   margin: 0 auto !important;
-  @media (max-width: 765px) {
+  @media (max-width: 756px) {
     width: 90%;
   }
 `;
 
-const RepleListDiv = styled.div`
+const RepleUploadDiv = styled.div`
   width: 100%;
+
   form {
     width: 100%;
     display: grid;
-    margin-bottom: 10px;
-
     grid-template-columns: 7fr 1fr;
     grid-template-rows: 50px;
-    @media (max-width: 765px) {
+    @media (max-width: 756px) {
       grid-template-columns: 4fr 1fr;
       grid-template-rows: 40px;
     }
@@ -55,16 +54,13 @@ const RepleListDiv = styled.div`
       font-size: 12px;
       border-radius: 10px;
       padding: 5px;
-      background-color: red;
-      color: white;
-      border: 1px solid red;
-      &:hover {
-        background-color: white;
-        color: red;
-        border: 1px solid red;
-      }
+      border: 1px solid #c6c6c6;
     }
   }
+`;
+
+const RepleListDiv = styled.div`
+  margin-top: 1rem;
 `;
 
 const RepleContentDiv = styled.div`
@@ -76,52 +72,61 @@ const RepleContentDiv = styled.div`
     margin-bottom: 5px;
     justify-content: space-between;
     align-items: center;
-    p {
-      font-size: 12px;
-      font-weight: bold;
-      color: darkgrey;
-    }
-  }
-  .modalControl {
-    cursor: pointer;
-    position: relative;
-    span {
-      user-select: none;
-    }
-    .modalDiv {
-      position: absolute;
-      top: 15px;
-      right: 18px;
-      width: 80px;
-      height: 60px;
-      overflow: hidden;
-      padding: 10px;
-      cursor: auto;
+    .userInfo {
       display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: space-between;
       align-items: center;
-
-      background-color: whitesmoke;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3),
-        0px 7.5px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
       p {
-        color: black;
-        margin-bottom: 0px;
-        cursor: pointer;
-        &.delete {
-          color: red;
+        font-size: 12px;
+        font-weight: bold;
+        color: darkgrey;
+        margin-left: 10px;
+      }
+    }
+    .modalControl {
+      cursor: pointer;
+      position: relative;
+      span {
+        user-select: none;
+      }
+      .modalDiv {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        width: 80px;
+        height: 60px;
+        overflow: hidden;
+        padding: 10px;
+        cursor: auto;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+
+        background-color: whitesmoke;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.03),
+          0px 7.5px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        p {
+          color: black;
+          margin-bottom: 0px;
+          cursor: pointer;
+          &.delete {
+            color: red;
+          }
         }
       }
     }
   }
+  .time {
+    font-size: 10px;
+    margin-bottom: 5px;
+    color: lightgrey;
+  }
   p {
     margin-bottom: 0px;
     font-size: 14px;
-    font-color: black;
   }
 `;
 
-export { RepleListDiv, RepleContentDiv, RepleAreaDiv };
+export { RepleAreaDiv, RepleUploadDiv, RepleListDiv, RepleContentDiv };

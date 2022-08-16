@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { RepleContentDiv, RepleListDiv } from "../../Style/RepleCSS";
+import { RepleContentDiv, RepleUploadDiv } from "../../Style/RepleCSS";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Avatar from "react-avatar";
+
+import moment from "moment";
+import "moment/locale/ko";
 
 function RepleContent(props) {
   const user = useSelector((state) => state.user);
@@ -11,6 +14,14 @@ function RepleContent(props) {
   const [EditFalg, setEditFalg] = useState(false);
   const [Reple, setReple] = useState("");
   useOnClickOutside(ref, () => setModalFlag(false));
+
+  const SetTime = (a, b) => {
+    if (a !== b) {
+      return moment(b).format("YYYY년 MMMM Do, hh:mm") + "(수정됨)";
+    } else {
+      return moment(a).format("YYYY년 MMMM Do, hh:mm");
+    }
+  };
 
   const Submithandler = (e) => {
     e.preventDefault();
@@ -41,29 +52,41 @@ function RepleContent(props) {
   return (
     <RepleContentDiv>
       <div className="author">
-        <p>{props.reple.author.displayName}</p>
-        <Avatar size="30" round={true} src={props.reple.author.photoURL} />
-        <div className="modalControl">
-          <span onClick={() => setModalFlag(true)}>...</span>
-          {ModalFalg && props.reple.author.uid === user.uid && (
-            <div className="modalDiv" ref={ref}>
-              <p
-                onClick={() => {
-                  setEditFalg(true);
-                  setModalFlag(false);
-                }}
-              >
-                수정
-              </p>
-              <p className="delete" onClick={(e) => Deletehandler(e)}>
-                삭제
-              </p>
-            </div>
-          )}
+        <div className="userInfo">
+          <Avatar
+            size="30"
+            round={true}
+            src={props.reple.author.photoURL}
+            style={{ border: "1px solid #c6c6c6" }}
+          />
+          <p>{props.reple.author.displayName}</p>
         </div>
+        {props.reple.author.uid === user.uid && (
+          <div className="modalControl">
+            <span onClick={() => setModalFlag(true)}>...</span>
+            {ModalFalg && props.reple.author.uid === user.uid && (
+              <div className="modalDiv" ref={ref}>
+                <p
+                  onClick={() => {
+                    setEditFalg(true);
+                    setModalFlag(false);
+                  }}
+                >
+                  수정
+                </p>
+                <p className="delete" onClick={(e) => Deletehandler(e)}>
+                  삭제
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
+      <p className="time">
+        {SetTime(props.reple.createdAt, props.reple.updatedAt)}
+      </p>
       {EditFalg ? (
-        <RepleListDiv>
+        <RepleUploadDiv>
           <form>
             <input
               type="text"
@@ -84,7 +107,7 @@ function RepleContent(props) {
               취소
             </button>
           </div>
-        </RepleListDiv>
+        </RepleUploadDiv>
       ) : (
         <p>{props.reple.reple}</p>
       )}

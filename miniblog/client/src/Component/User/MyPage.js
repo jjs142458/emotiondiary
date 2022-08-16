@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
 import axios from "axios";
 import firebase from "../../firebase";
+import { MyPageDiv } from "../../Style/UserCSS.js";
 
 function MyPage() {
   const [CurrentImage, setCurrentImage] = useState("");
@@ -52,8 +53,17 @@ function MyPage() {
   };
 
   return (
-    <div>
-      <form>
+    <MyPageDiv style={{ width: "100vw", height: "100vh" }}>
+      <form
+        style={{
+          width: "50%",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "2rem",
+        }}
+      >
         <label>
           <input
             type="file"
@@ -70,7 +80,7 @@ function MyPage() {
         </label>
         <button onClick={(e) => SaveProfile(e)}>저장</button>
       </form>
-    </div>
+    </MyPageDiv>
   );
 }
 

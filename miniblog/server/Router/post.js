@@ -57,9 +57,17 @@ router.post("/list", (req, res) => {
   } else {
     sort.repleNum = -1;
   }
-  Post.find()
+
+  Post.find({
+    $or: [
+      { title: { $regex: req.body.search } },
+      { content: { $regex: req.body.search } },
+    ],
+  })
     .populate("author")
-    .sort()
+    .sort(sort)
+    .skip(req.body.skip)
+    .limit(5)
     .exec()
     .then((doc) => {
       res.status(200).json({ success: true, postList: doc });

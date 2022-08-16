@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginDiv from "../../Style/UesrCss";
-
+import { LoginDiv } from "../../Style/UserCSS.js";
 import firebase from "../../firebase.js";
-
 import { useSelector } from "react-redux";
 
 function Login() {

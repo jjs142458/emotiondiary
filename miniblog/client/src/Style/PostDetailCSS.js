@@ -10,10 +10,19 @@ const PostDiv = styled.div`
   }
 `;
 
+const SpinnerDiv = styled.div`
+  width: 100%;
+  height: calc(100vh - 2rem);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Post = styled.div`
   width: 100%;
   height: auto;
-  background: #fffff;
+  background: #ffffff;
   padding: 30px 20px;
   box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.03),
     0px 15px 12px rgba(0, 0, 0, 0.1);
@@ -22,6 +31,28 @@ const Post = styled.div`
   }
   p {
     margin-bottom: 0px;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    p {
+      color: darkgrey;
+      margin-bottom: 0px;
+      margin-left: 10px;
+      &.time {
+        font-size: 10px;
+      }
+      &.admin {
+        display: flex;
+        align-items: center;
+      }
+    }
+    @media (max-width: 756px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 `;
 
@@ -58,4 +89,4 @@ const BtnDiv = styled.div`
   }
 `;
 
-export { Post, BtnDiv, PostDiv };
+export { PostDiv, SpinnerDiv, Post, BtnDiv };
