@@ -73,6 +73,7 @@ function MainPage() {
             value={Search}
             onChange={(e) => {
               setSearch(e.target.value);
+              SearchHandler();
             }}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
@@ -81,7 +82,7 @@ function MainPage() {
             }}
           />
           <button onClick={() => SearchHandler()}>
-            <i class="bi bi-search"></i>
+            <i className="bi bi-search"></i>
           </button>
         </div>
         <DropdownButton variant="outline-secondary" title={Sort}>
